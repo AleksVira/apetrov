@@ -23,8 +23,8 @@ public class CalculateTest {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         Calculate.main(null);
-        assertThat(out.toString(), 
+        assertThat(out.toString(),
 				is(String.format("Hello world!%s",
 				System.getProperty("line.separator"))));
-    }
+	}
 }
