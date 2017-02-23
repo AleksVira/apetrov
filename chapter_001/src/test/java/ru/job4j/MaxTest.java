@@ -62,4 +62,14 @@ public class MaxTest {
 		Max maxTest = new Max();
         assertThat(maxTest.max(7, 7), is(7));
 	}
+
+    /**
+     * Test max function in case three arguments.
+     */
+    @Test
+    public void shouldReturnMaximumOfThreeArguments() {
+		Max maxTest = new Max();
+        assertThat(maxTest.max(3, 7, 15), is(15));
+	}
+
 }

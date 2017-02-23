@@ -18,4 +18,16 @@ public class Max {
 	public int max(int first, int second) {
 		return (first >= second) ? first : second;
 	}
+
+	/**
+     * Максимум из трех целых чисел.
+     * @param first - первое сравниваемое.
+     * @param second - второе сравниваемое.
+	 * @param third - третье сравниваемое.
+	 * @return Наибольшее из трех чисел
+     */
+	public int max(int first, int second, int third) {
+		return max(max(first, second), third);
+	}
+
 }
