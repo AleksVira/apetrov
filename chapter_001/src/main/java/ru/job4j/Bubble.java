@@ -9,46 +9,26 @@ package ru.job4j;
  */
 public class Bubble {
     /**
-     * The class constructor with an array.
-     *
-     * @param newValues -- array of integer numbers.
-     */
-    public Bubble(int[] newValues) {
-        this.values = newValues;
-    }
-
-    /**
-     * Array of unsorted integers.
-     */
-    private int[] values;
-
-    /**
-     * Getter for values.
-     *
-     * @return values
-     */
-    public int[] getValues() {
-        return values;
-    }
-
-    /**
      * Sort the array (Bubble sort).
+     *
+     * @param values -- array of integer numbers.
+     * @return sorted array
      */
-    public void bubbleSort() {
+    public int[] bubbleSort(int[] values) {
+        boolean wasSwapped = false;
         for (int i = 0; i < values.length; i++) {
-            boolean wasShifted = false;
-            for (int j = 0; j < values.length - i - 1; j++) {
+            for (int j = 0; j < values.length - 1 - i; j++) {
                 if (values[j] > values[j + 1]) {
+                    wasSwapped = true;
                     int tmp = values[j + 1];
                     values[j + 1] = values[j];
                     values[j] = tmp;
-                    wasShifted = true;
                 }
             }
-            if (!wasShifted) {
+            if (!wasSwapped) {
                 break;
             }
         }
-
+        return values;
     }
 }

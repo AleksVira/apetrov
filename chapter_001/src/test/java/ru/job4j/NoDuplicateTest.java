@@ -35,15 +35,4 @@ public class NoDuplicateTest {
 		String[] expectArray = {"AA", "BB"};
 		assertThat(result, is(expectArray));
 	}
-
-    /**
-     * Test with a little bit more complex array.
-     */
-    @Test
-    public void biggerArrayTest() {
-		NoDuplicate noDuplicate = new NoDuplicate();
-		String[] result = noDuplicate.duplicatesRemove(new String[]{"FF", "AA", "EE", "AA", "EE", "AA", "BB", "CC", "CC", "DD"});
-		String[] expectArray = {"FF", "AA", "EE", "BB", "CC", "DD"};
-		assertThat(result, is(expectArray));
-	}
 }

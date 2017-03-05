@@ -19,10 +19,9 @@ public class BubbleTest {
      */
     @Test
     public void wnenSizeIsZero() {
-		Bubble bubble = new Bubble(new int[0]);
-		bubble.bubbleSort();
+		Bubble bubble = new Bubble();
 		int[] expectArray = {};
-		assertThat(bubble.getValues(), is(expectArray));
+		assertThat(bubble.bubbleSort(new int[0]), is(expectArray));
 	}
 
     /**
@@ -30,10 +29,9 @@ public class BubbleTest {
      */
     @Test
     public void whenCompletelyUnsorted() {
-		Bubble bubble = new Bubble(new int[] {6, 5, 4, 3, 2, 1});
-		bubble.bubbleSort();
+		Bubble bubble = new Bubble();
 		int[] expectArray = {1, 2, 3, 4, 5, 6};
-		assertThat(bubble.getValues(), is(expectArray));
+		assertThat(bubble.bubbleSort(new int[] {6, 5, 4, 3, 2, 1}), is(expectArray));
 	}
 
     /**
@@ -41,9 +39,8 @@ public class BubbleTest {
      */
     @Test
     public void whenPartlyUnsorted() {
-		Bubble bubble = new Bubble(new int[] {1, 2, 5, 4, 3, 3});
-		bubble.bubbleSort();
+		Bubble bubble = new Bubble();
 		int[] expectArray = {1, 2, 3, 3, 4, 5};
-		assertThat(bubble.getValues(), is(expectArray));
+		assertThat(bubble.bubbleSort(new int[] {1, 2, 5, 4, 3, 3}), is(expectArray));
 	}
 }
