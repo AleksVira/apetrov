@@ -31,6 +31,7 @@ class Doctor extends Person {
 
     /**
      * Доктор ставит диагноз.
+     *
      * @return название болезни
      */
     String diagnose() {
@@ -39,7 +40,8 @@ class Doctor extends Person {
     }
 
     /**
-     * Доктор лечим пациента.
+     * Доктор лечит пациента.
+     *
      * @param patient -- пациент
      * @return строка: кто лечит кого
      */
@@ -49,10 +51,12 @@ class Doctor extends Person {
 
     /**
      * Доктор назначает лекарство.
+     *
+     * @param patient -- пациент
      * @return назначенное лекарство
      */
-    String prescribeMedicine() {
+    String prescribeMedicine(String patient) {
         String medicine = "витамины";
-        return ("Доктор " + this.getName() + " назначил " + medicine);
+        return ("Доктор " + this.getName() + " назначил пациенту " + patient + " лекарство " + medicine);
     }
 }

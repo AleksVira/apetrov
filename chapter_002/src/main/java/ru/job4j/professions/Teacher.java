@@ -52,7 +52,7 @@ class Teacher extends Person {
     /**
      * Проверка домашнего задания выполнена.
      *
-     * @param pupil -- имя ученика.
+     * @param pupil -- имя ученика
      * @return какой учитель проверил чьё задание
      */
     String checkHomework(String pupil) {
@@ -62,11 +62,12 @@ class Teacher extends Person {
     /**
      * Учитель выставляет оценку ученику.
      *
+     * @param pupil -- имя ученика
      * @return оценка за домашнее задание
      */
-    int evaluate() {
+    int evaluate(String pupil) {
         int score;
-        score = new Random().nextInt(4) + 1;
+        score = new Random(pupil.length()).nextInt(4) + 1;
         return score;
     }
 }

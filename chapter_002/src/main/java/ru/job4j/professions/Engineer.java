@@ -31,10 +31,11 @@ class Engineer extends Person {
 
     /**
      * Инженер читает документацию.
+     * @param projectName -- название проекта
      * @return кто прочитал документацию
      */
-    String readDocumentation() {
-        return ("Инженер " + this.getName() + " прочитал документацию");
+    String readDocumentation(String projectName) {
+        return ("Инженер " + this.getName() + " прочитал документацию к проекту " + projectName);
     }
 
     /**

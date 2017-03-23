@@ -34,7 +34,7 @@ public class DoctorTest {
     @Test
     public void testPrescribeMedicine() {
         Doctor doc = new Doctor("Мишин", 45, 75);
-        String expectString = "Доктор " + "Мишин" + " назначил " + "витамины";
-        assertThat(doc.prescribeMedicine(), is(expectString));
+        String expectString = "Доктор " + "Мишин" + " назначил пациенту " + "Больнов" + " лекарство " + "витамины";
+        assertThat(doc.prescribeMedicine("Больнов"), is(expectString));
     }
 }

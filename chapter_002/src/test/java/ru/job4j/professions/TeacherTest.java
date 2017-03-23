@@ -45,7 +45,7 @@ public class TeacherTest {
     public void evaluate() {
         Teacher teacher = new Teacher("Андреев", 32, 20);
         for (int i = 0; i < 10; i++) {
-            assertTrue(teacher.evaluate() >= 1 && teacher.evaluate() <= 5);
+            assertTrue(teacher.evaluate("Помидоркин") >= 1 && teacher.evaluate("Морковкин") <= 5);
         }
     }
 

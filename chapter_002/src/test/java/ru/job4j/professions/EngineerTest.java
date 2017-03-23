@@ -18,8 +18,8 @@ public class EngineerTest {
     @Test
     public void testReadDocumentation() {
         Engineer engineer = new Engineer("Комаров", 35, 45);
-        String expectString = "Инженер " + "Комаров" + " прочитал документацию";
-        assertThat(engineer.readDocumentation(), is(expectString));
+        String expectString = "Инженер " + "Комаров" + " прочитал документацию к проекту " + "насосная станция";
+        assertThat(engineer.readDocumentation("насосная станция"), is(expectString));
     }
 
     /** Проверка расчета по проекту. */
