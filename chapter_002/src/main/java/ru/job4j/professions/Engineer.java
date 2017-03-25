@@ -52,7 +52,7 @@ class Engineer extends Person {
      * @param person -- кому помогает инженер
      * @return кому помог инженер по проекту
      */
-    String help(String person) {
-        return ("Инженер " + this.getName() + " помог " + person + " по проекту");
+    String help(Person person) {
+        return ("Инженер " + this.getName() + " помог " + person.getName() + " по проекту");
     }
 }

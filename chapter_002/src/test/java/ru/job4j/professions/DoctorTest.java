@@ -26,15 +26,17 @@ public class DoctorTest {
     @Test
     public void testHeal() {
         Doctor doc = new Doctor("Блинов", 38, 55);
-        String expectString = "Доктор " + "Блинов" + " лечит " + "Щербакова";
-        assertThat(doc.heal("Щербакова"), is(expectString));
+        Person pers = new Person("Щербаков", 25, 0);
+        String expectString = "Доктор " + "Блинов" + " лечит пациента " + "Щербаков";
+        assertThat(doc.heal(pers), is(expectString));
     }
 
     /** Проверка что доктор назначил лекарство. */
     @Test
     public void testPrescribeMedicine() {
         Doctor doc = new Doctor("Мишин", 45, 75);
+        Person pers = new Person("Больнов", 30, 0);
         String expectString = "Доктор " + "Мишин" + " назначил пациенту " + "Больнов" + " лекарство " + "витамины";
-        assertThat(doc.prescribeMedicine("Больнов"), is(expectString));
+        assertThat(doc.prescribeMedicine(pers), is(expectString));
     }
 }

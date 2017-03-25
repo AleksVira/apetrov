@@ -42,21 +42,21 @@ class Doctor extends Person {
     /**
      * Доктор лечит пациента.
      *
-     * @param patient -- пациент
+     * @param person -- пациент
      * @return строка: кто лечит кого
      */
-    String heal(String patient) {
-        return ("Доктор " + this.getName() + " лечит " + patient);
+    String heal(Person person) {
+        return ("Доктор " + this.getName() + " лечит пациента " + person.getName());
     }
 
     /**
      * Доктор назначает лекарство.
      *
-     * @param patient -- пациент
+     * @param person -- пациент
      * @return назначенное лекарство
      */
-    String prescribeMedicine(String patient) {
+    String prescribeMedicine(Person person) {
         String medicine = "витамины";
-        return ("Доктор " + this.getName() + " назначил пациенту " + patient + " лекарство " + medicine);
+        return ("Доктор " + this.getName() + " назначил пациенту " + person.getName() + " лекарство " + medicine);
     }
 }

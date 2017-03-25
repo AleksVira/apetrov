@@ -32,42 +32,41 @@ class Teacher extends Person {
     /**
      * Кто кого учит.
      *
-     * @param pupil -- имя ученика
+     * @param person -- имя ученика
      * @return какой учитель кого учит
      */
-    String teach(String pupil) {
-        return ("Учитель " + this.getName() + " учит ученика " + pupil);
+    String teach(Person person) {
+        return ("Учитель " + this.getName() + " учит ученика " + person.getName());
     }
 
     /**
      * От кого принимает задание.
      *
-     * @param pupil -- имя ученика
+     * @param person -- имя ученика
      * @return строка о принятии задания от ученика
      */
-    String assignHomework(String pupil) {
-        return ("Задание от ученика " + pupil + " принято");
+    String assignHomework(Person person) {
+        return ("Задание от ученика " + person.getName() + " принято");
     }
 
     /**
      * Проверка домашнего задания выполнена.
      *
-     * @param pupil -- имя ученика
+     * @param person -- имя ученика
      * @return какой учитель проверил чьё задание
      */
-    String checkHomework(String pupil) {
-        return ("Учитель " + this.getName() + " проверил домашнее задание ученика " + pupil);
+    String checkHomework(Person person) {
+        return ("Учитель " + this.getName() + " проверил домашнее задание ученика " + person.getName());
     }
 
     /**
      * Учитель выставляет оценку ученику.
      *
-     * @param pupil -- имя ученика
      * @return оценка за домашнее задание
      */
-    int evaluate(String pupil) {
+    int evaluate() {
         int score;
-        score = new Random(pupil.length()).nextInt(4) + 1;
+        score = new Random().nextInt(5) + 1;
         return score;
     }
 }

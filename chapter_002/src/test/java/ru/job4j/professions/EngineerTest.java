@@ -34,7 +34,8 @@ public class EngineerTest {
     @Test
     public void testHelp() {
         Engineer engineer = new Engineer("Баранов", 40, 50);
+        Person pers = new Person("Беспалов", 32, 0);
         String expectString = "Инженер " + "Баранов" + " помог " + "Беспалов" + " по проекту";
-        assertThat(engineer.help("Беспалов"), is(expectString));
+        assertThat(engineer.help(pers), is(expectString));
     }
 }
