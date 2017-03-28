@@ -38,6 +38,11 @@ public class Item {
         return create;
     }
 
+    /** Вывод на экран информации об элементе. */
+    public void printInfo() {
+        System.out.println(String.format("Item ID: %s\nName: %s\nDescription: %s", this.getId(), this.getName(), this.getDescription()));
+    }
+
     /**
      * Конструктор новой заявки.
      *
@@ -51,3 +56,5 @@ public class Item {
         this.create = create;
     }
 }
+
+

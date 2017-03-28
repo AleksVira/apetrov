@@ -125,4 +125,8 @@ public class Tracker {
         return String.valueOf(System.currentTimeMillis() + RND.nextInt());
     }
 
+    public int getPointer() {
+        return pointer;
+    }
+
 }
