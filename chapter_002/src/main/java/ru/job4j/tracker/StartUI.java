@@ -19,7 +19,7 @@ public class StartUI {
      * @param input   -- система ввода/вывода
      * @param tracker -- наш трекер
      */
-    private StartUI(Input input, Tracker tracker) {
+    StartUI(Input input, Tracker tracker) {
         this.input = input;
         this.tracker = tracker;
     }
@@ -32,6 +32,7 @@ public class StartUI {
     public static void main(String[] args) {
         Tracker tracker = new Tracker();
         Input input = new ConsoleInput();
+//        Input input = new StubInput(new String[]{"create first task"});
         StartUI startUI = new StartUI(input, tracker);
         startUI.init();
     }
@@ -39,8 +40,8 @@ public class StartUI {
     /**
      * Инициация меню и запуск цикла программы.
      */
-    private void init() {
-        Menu menu = new Menu();
+    void init() {
+        Menu menu = Menu.getInstance();
         String answer;
         int menuItem;
         do {

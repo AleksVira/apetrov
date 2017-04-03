@@ -33,11 +33,18 @@ public class Menu {
         return goExit;
     }
 
+
+    /**
+     * Единственный экземпляр Menu.
+     */
+    private static Menu instance;
+
     /**
      * Конструктор Menu.
+     * Реализация шаблона Singleton.
      * Exit -- всегда последний пункт меню!
      */
-    public Menu() {
+    private Menu() {
         menuItems[0] = new AddItem();
         menuItems[1] = new ShowAllItems();
         menuItems[2] = new EditItem();
@@ -45,6 +52,17 @@ public class Menu {
         menuItems[4] = new FindItemById();
         menuItems[5] = new FindItemsByName();
         menuItems[6] = new ExitProgram();
+    }
+
+    /**
+     * Ленивая инициализация Menu.
+     * @return единственный экземпляр Menu.
+     */
+    static Menu getInstance() {
+        if (instance == null) {
+            instance = new Menu();
+        }
+        return instance;
     }
 
     /**
