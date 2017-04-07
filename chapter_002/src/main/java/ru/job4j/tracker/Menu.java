@@ -1,14 +1,5 @@
 package ru.job4j.tracker;
 
-import ru.job4j.tracker.actions.Action;
-import ru.job4j.tracker.actions.ExitProgram;
-import ru.job4j.tracker.actions.FindItemById;
-import ru.job4j.tracker.actions.FindItemsByName;
-import ru.job4j.tracker.actions.DeleteItem;
-import ru.job4j.tracker.actions.AddItem;
-import ru.job4j.tracker.actions.ShowAllItems;
-import ru.job4j.tracker.actions.EditItem;
-
 /**
  * Класс Menu -- меню программы.
  *
@@ -29,7 +20,7 @@ public class Menu {
      *
      * @return "уже выход?"
      */
-    public boolean isGoExit() {
+    boolean isGoExit() {
         return goExit;
     }
 
@@ -56,6 +47,7 @@ public class Menu {
 
     /**
      * Ленивая инициализация Menu.
+     *
      * @return единственный экземпляр Menu.
      */
     static Menu getInstance() {
@@ -65,10 +57,8 @@ public class Menu {
         return instance;
     }
 
-    /**
-     * Отображаем меню на экране.
-     */
-    public void showMenu() {
+    /** Отображаем меню на экране. */
+    void showMenu() {
         System.out.println();
         for (int i = 0; i < MENU_LENGHT; i++) {
             System.out.println(menuItems[i].menuString());
@@ -82,10 +72,189 @@ public class Menu {
      * @param input   система ввода
      * @param tracker трекер
      */
-    public void select(int i, Input input, Tracker tracker) {
+    void select(int i, Input input, Tracker tracker) {
         menuItems[i].execute(input, tracker);
         if (i == menuItems.length - 1) {
             goExit = true;
         }
     }
+
+    /** Класс AddItem -- добавление нового элемента в трекер. */
+    private class AddItem extends Action {
+
+        /** Конструктор нового AddItem. */
+        AddItem() {
+            super("Add new Item");
+        }
+
+        /**
+         * Реализация абстрактного метода.
+         *
+         * @param input   система ввода
+         * @param tracker трекер
+         */
+        public void execute(Input input, Tracker tracker) {
+            String itemName = input.ask("Enter the name of the new Item: ");
+            String itemDescription = input.ask("Enter the description of the new Item: ");
+            tracker.addItem(new Item(itemName, itemDescription, System.currentTimeMillis()));
+        }
+    }
+
+    /** Класс ShowAllItems -- отображение всех элементов в трекере. */
+    private class ShowAllItems extends Action {
+
+        /** Конструктор нового ShowAllItems. */
+        ShowAllItems() {
+            super("Show all items");
+        }
+
+        /**
+         * Реализация абстрактного метода.
+         *
+         * @param input   система ввода
+         * @param tracker трекер
+         */
+        public void execute(Input input, Tracker tracker) {
+            if (tracker.getPointer() == 0) {
+                System.out.println("Tracker is empty!");
+                return;
+            }
+            for (Item item : tracker.findAll()) {
+                System.out.println();
+                item.printInfo();
+            }
+        }
+    }
+
+    /** Класс EditItem -- редактирование элемента в трекере. */
+    private class EditItem extends Action {
+
+        /** Конструктор нового Edit item. */
+        EditItem() {
+            super("Edit item");
+        }
+
+        /**
+         * Реализация абстрактного метода.
+         *
+         * @param input   система ввода
+         * @param tracker трекер
+         */
+        public void execute(Input input, Tracker tracker) {
+            String idToEdit = input.ask("Enter the ID of the item to edit: ");
+            if (tracker.findById(idToEdit) != null) {
+                String newName = input.ask("Enter the new name of this Item: ");
+                String newDescription = input.ask("Enter the new description of this Item: ");
+                Item item = new Item(newName, newDescription, System.currentTimeMillis());
+                item.setId(idToEdit);
+                tracker.update(item);
+            } else {
+                System.out.println("Item with this ID does not exist.");
+            }
+        }
+    }
+
+    /** Класс DeleteItem -- удаление элемента в трекере. */
+    private class DeleteItem extends Action {
+
+        /** Конструктор Delete item. */
+        DeleteItem() {
+            super("Delete item");
+        }
+
+        /**
+         * Реализация абстрактного метода.
+         *
+         * @param input   система ввода
+         * @param tracker трекер
+         */
+        public void execute(Input input, Tracker tracker) {
+            String idToDelete = input.ask("Enter the ID of the item to remove: ");
+            if (tracker.findById(idToDelete) != null) {
+                Item itemToDel = tracker.findById(idToDelete);
+                tracker.delete(itemToDel);
+            } else {
+                System.out.println("Item with this ID does not exist.");
+            }
+        }
+    }
+
+    /** Класс FindItemById -- поиск элемента по ID. */
+    private class FindItemById extends Action {
+
+        /** Конструктор нового FindItemById. */
+        FindItemById() {
+            super("Find item by Id");
+        }
+
+        /**
+         * Реализация абстрактного метода.
+         *
+         * @param input   система ввода
+         * @param tracker трекер
+         */
+        public void execute(Input input, Tracker tracker) {
+            String idToFind = input.ask("Enter the ID of the desired item: ");
+            if (tracker.findById(idToFind) != null) {
+                Item itemToFind = tracker.findById(idToFind);
+                itemToFind.printInfo();
+            } else {
+                System.out.println("Item with this ID does not exist.");
+            }
+
+
+        }
+    }
+
+    /** Класс FindItemById -- поиск элемента по имени (name). */
+    private class FindItemsByName extends Action {
+
+        /** Конструктор нового FindItemsByName. */
+        FindItemsByName() {
+            super("Find items by name");
+        }
+
+        /**
+         * Реализация абстрактного метода.
+         *
+         * @param input   система ввода
+         * @param tracker трекер
+         */
+        public void execute(Input input, Tracker tracker) {
+            String nameToFind = input.ask("Enter the name of the desired items: ");
+            Item[] searchResult = tracker.findByName(nameToFind);
+            if (searchResult.length != 0) {
+                for (Item item : searchResult) {
+                    System.out.println();
+                    item.printInfo();
+                }
+            } else {
+                System.out.println("There is no items with that name.");
+            }
+        }
+    }
+
+    /** Класс ExitProgram -- организация выхода из программы. */
+    private class ExitProgram extends Action {
+
+        /** Конструктор нового ExitProgram. */
+        ExitProgram() {
+            super("Exit program");
+        }
+
+        /**
+         * Реализация абстрактного метода.
+         *
+         * @param input   система ввода
+         * @param tracker трекер
+         */
+        public void execute(Input input, Tracker tracker) {
+            String answer = input.ask("Are you really want to exit? (Y/N or y/n): ");
+            if (answer.toLowerCase().equals("y")) {
+                System.out.println("Exit program, bye!");
+            }
+        }
+    }
+
 }
+

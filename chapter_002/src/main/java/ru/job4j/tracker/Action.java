@@ -1,7 +1,4 @@
-package ru.job4j.tracker.actions;
-
-import ru.job4j.tracker.Input;
-import ru.job4j.tracker.Tracker;
+package ru.job4j.tracker;
 
 /**
  * Класс Action, родительский для всех user-Action.
@@ -42,7 +39,7 @@ public abstract class Action {
      *
      * @return - строка пункта меню, с номером.
      */
-    public String menuString() {
+    String menuString() {
         if (actionsCounter > 9) {
             return String.format("%2d. %s", this.actionKey, this.name);
         } else {

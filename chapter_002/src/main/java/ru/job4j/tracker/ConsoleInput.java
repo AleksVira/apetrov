@@ -11,7 +11,7 @@ import java.util.Scanner;
  */
 public class ConsoleInput implements Input {
 
-    /** Конструктор нового ShowAllItems. */
+    /** Сканер для ввода данных. */
     private Scanner scanner = new Scanner(System.in);
 
     /**
