@@ -31,8 +31,8 @@ public class StartUI {
      */
     public static void main(String[] args) {
         Tracker tracker = new Tracker();
-        Input input = new ConsoleInput();
-//        Input input = new StubInput(new String[]{"create first task"});
+        Input input = new ValidateInput();
+//        Input input = new ConsoleInput();
         StartUI startUI = new StartUI(input, tracker);
         startUI.init();
     }
@@ -42,13 +42,10 @@ public class StartUI {
      */
     void init() {
         Menu menu = Menu.getInstance();
-        String answer;
-        int menuItem;
+        int[] range = menu.menuKeys();
         do {
             menu.showMenu();
-            answer = input.ask("Select: ");
-            menuItem = Integer.valueOf(answer);
-            menu.select(menuItem, input, tracker);
+            menu.select(input.ask("Select: ", range), input, tracker);
         } while (!menu.isGoExit());
     }
 }

@@ -15,4 +15,13 @@ public interface Input {
      * @return              ответ пользователя
      */
     String ask(String question);
+
+    /**
+     * Метод "задать вопрос, получить ответ", с указанием возможного диапазона.
+     *
+     * @param question      вопрос
+     * @param range         диапазон возможных значений
+     * @return              ответ пользователя
+     */
+    int ask(String question, int[] range);
 }

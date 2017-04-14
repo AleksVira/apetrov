@@ -33,7 +33,6 @@ public class Menu {
     /**
      * Конструктор Menu.
      * Реализация шаблона Singleton.
-     * Exit -- всегда последний пункт меню!
      */
     private Menu() {
         menuItems[0] = new AddItem();
@@ -74,9 +73,19 @@ public class Menu {
      */
     void select(int i, Input input, Tracker tracker) {
         menuItems[i].execute(input, tracker);
-        if (i == menuItems.length - 1) {
-            goExit = true;
+    }
+
+    /**
+     * Создаем целочисленный массив с ключами меню.
+     *
+     * @return массив допустимых значений ключей
+     */
+    int[] menuKeys() {
+        int[] keys = new int[MENU_LENGHT];
+        for (int i = 0; i < MENU_LENGHT; i++) {
+            keys[i] = menuItems[i].getActionKey();
         }
+        return keys;
     }
 
     /** Класс AddItem -- добавление нового элемента в трекер. */
@@ -250,8 +259,11 @@ public class Menu {
          */
         public void execute(Input input, Tracker tracker) {
             String answer = input.ask("Are you really want to exit? (Y/N or y/n): ");
-            if (answer.toLowerCase().equals("y")) {
+            if ("y".equals(answer.toLowerCase())) {
+                goExit = true;
                 System.out.println("Exit program, bye!");
+            } else {
+                System.out.println("Please, enter again.");
             }
         }
     }
